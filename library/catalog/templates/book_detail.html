@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h3>Wybrana książka</h3>
+    <h2>Tytuł: {{ object.title }}</h2>
+    <p>Gatunek: {{ object.genre }}</p>
+    <p>Ocena: {{ object.rating }}</p>
+    <p>Autor: {{ object.author.name }}</p>
+    <p>Data wydania: {{ object.issue_date }}</p>
+    <p>Opis:</p>
+    <p>{{ object.description }}</p>
+    <a class="btn btn-primary" href="{% url 'book-update-view' object.id %}" role="button">Edytuj książkę</a>
+    <a class="btn btn-danger" href="{% url 'book-delete-view' object.id %}" role="button">Usuń książkę</a>
+{% endblock %}
