@@ -29,7 +29,6 @@ class BookCreateView(CreateView):
     success_url = reverse_lazy('books')
 
 
-
 class BookUpdateView(UpdateView):
     template_name = 'form.html'
     model = Book
