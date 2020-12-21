@@ -9,6 +9,8 @@
     <p>Data wydania: {{ object.issue_date }}</p>
     <p>Opis:</p>
     <p>{{ object.description }}</p>
+    {% if user.is_staff %}
     <a class="btn btn-primary" href="{% url 'book-update-view' object.id %}" role="button">Edytuj książkę</a>
     <a class="btn btn-danger" href="{% url 'book-delete-view' object.id %}" role="button">Usuń książkę</a>
+    {% endif %}
 {% endblock %}

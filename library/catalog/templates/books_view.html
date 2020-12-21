@@ -27,7 +27,9 @@
     </span>
     </div>
     <br>
+    {% if user.is_staff %}
     <div>
         <a class="btn btn-primary" href="{% url 'book-create-view' %}">Dodaj nową książkę</a>
     </div>
+    {% endif %}
 {% endblock %}

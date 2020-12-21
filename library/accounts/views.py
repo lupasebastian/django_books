@@ -5,6 +5,8 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 
+from .forms import SignUpForm
+
 
 class MyLoginView(LoginView):
     template_name = 'form.html'
@@ -16,4 +18,6 @@ class MyPasswordChangeView(PasswordChangeView):
 
 
 class MySignUpView(CreateView):
-    pass
+    template_name = 'form.html'
+    form_class = SignUpForm
+    success_url = reverse_lazy('books')

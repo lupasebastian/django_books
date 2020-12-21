@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Wyślij" class="btn btn-primary">
+    <p>Jeśli autora nie ma w bazie: <a class="btn btn-primary" href="{% url 'author-create-view' %}">Dodaj autora</a> </p>
+    </form>
+{% endblock %}

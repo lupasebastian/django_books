@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import UserPassesTestMixin, PermissionRequiredMixin
 from django.shortcuts import render
 
 # Create your views here.
@@ -5,7 +6,12 @@ from django.urls import reverse_lazy
 
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
 
-from .models import Book
+from .models import Book, Author
+
+
+class StaffRequiredMixin(UserPassesTestMixin):
+    def test_func(self):
+        return self.request.user.is_staff
 
 
 class BooksView(ListView):
@@ -22,23 +28,29 @@ class BookDetailView(DetailView):
     model = Book
 
 
-class BookCreateView(CreateView):
+class BookCreateView(PermissionRequiredMixin, CreateView):
+    template_name = 'form_author.html'
+    model = Book
+    fields = '__all__'
+    success_url = reverse_lazy('books')
+    permission_required = 'catalog.add'
+
+
+class BookUpdateView(StaffRequiredMixin, PermissionRequiredMixin, UpdateView):
     template_name = 'form.html'
     model = Book
     fields = '__all__'
     success_url = reverse_lazy('books')
 
 
-class BookUpdateView(UpdateView):
-    template_name = 'form.html'
-    model = Book
-    fields = '__all__'
-    success_url = reverse_lazy('books')
-
-
-class BookDeleteView(DeleteView):
+class BookDeleteView(StaffRequiredMixin, PermissionRequiredMixin, DeleteView):
     template_name = 'book_delete.html'
     model = Book
     success_url = reverse_lazy('books')
 
 
+class AuthorCreateView(PermissionRequiredMixin, CreateView):
+    template_name = 'form.html'
+    model = Author
+    success_url = reverse_lazy('book-create-view')
+    fields = '__all__'
