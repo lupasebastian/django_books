@@ -33,7 +33,7 @@ class BookCreateView(PermissionRequiredMixin, CreateView):
     model = Book
     fields = '__all__'
     success_url = reverse_lazy('books')
-    permission_required = 'catalog.add'
+    permission_required = 'catalog.add_book'
 
 
 class BookUpdateView(StaffRequiredMixin, PermissionRequiredMixin, UpdateView):
@@ -41,12 +41,14 @@ class BookUpdateView(StaffRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = Book
     fields = '__all__'
     success_url = reverse_lazy('books')
+    permission_required = 'catalog.change_book'
 
 
 class BookDeleteView(StaffRequiredMixin, PermissionRequiredMixin, DeleteView):
     template_name = 'book_delete.html'
     model = Book
     success_url = reverse_lazy('books')
+    permission_required = 'catalog.delete_book'
 
 
 class AuthorCreateView(PermissionRequiredMixin, CreateView):
@@ -54,3 +56,4 @@ class AuthorCreateView(PermissionRequiredMixin, CreateView):
     model = Author
     success_url = reverse_lazy('book-create-view')
     fields = '__all__'
+    permission_required = 'catalog.add_author'

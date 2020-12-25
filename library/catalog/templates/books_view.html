@@ -27,7 +27,7 @@
     </span>
     </div>
     <br>
-    {% if user.is_staff %}
+    {% if perms.catalog.add_book %}
     <div>
         <a class="btn btn-primary" href="{% url 'book-create-view' %}">Dodaj nową książkę</a>
     </div>
