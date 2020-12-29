@@ -1,2 +1,5 @@
 /venv/
 ../venv/
+/library/accounts/migrations/
+/library/api/migrations/
+/library/catalog/migrations/
