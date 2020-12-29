@@ -5,6 +5,8 @@
         {% csrf_token %}
         {{ form.as_p }}
         <input type="submit" value="Wyślij" class="btn btn-primary">
+        {% if perms.catalog.add_author %}
     <p>Jeśli autora nie ma w bazie: <a class="btn btn-primary" href="{% url 'author-create-view' %}">Dodaj autora</a> </p>
+        {% endif %}
     </form>
 {% endblock %}

@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
-
+{% block sidebar %}
+    <h5 class="w3-bar-item">Opcje moderatora:</h5>
+    <a class="btn btn-primary" href="{% url 'book-create-view' %}">Dodaj nową książkę</a>
+{% endblock %}
 {% block content %}
     <h3>Lista książek</h3>
     <ul>
@@ -27,9 +30,4 @@
     </span>
     </div>
     <br>
-    {% if perms.catalog.add_book %}
-    <div>
-        <a class="btn btn-primary" href="{% url 'book-create-view' %}">Dodaj nową książkę</a>
-    </div>
-    {% endif %}
 {% endblock %}

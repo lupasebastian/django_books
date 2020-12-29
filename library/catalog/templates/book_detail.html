@@ -1,5 +1,10 @@
 {% extends 'base.html' %}
-
+{% block sidebar %}
+    <h5 class="w3-bar-item">Opcje moderatora:</h5>
+    <a class="btn btn-primary" href="{% url 'book-update-view' object.id %}" role="button">Edytuj książkę</a>
+    <br>
+    <a class="btn btn-danger" href="{% url 'book-delete-view' object.id %}" role="button">Usuń książkę</a>
+{% endblock %}
 {% block content %}
     <h3>Wybrana książka</h3>
     <h2>Tytuł: {{ object.title }}</h2>
@@ -9,8 +14,4 @@
     <p>Data wydania: {{ object.issue_date }}</p>
     <p>Opis:</p>
     <p>{{ object.description }}</p>
-    {% if user.is_staff %}
-    <a class="btn btn-primary" href="{% url 'book-update-view' object.id %}" role="button">Edytuj książkę</a>
-    <a class="btn btn-danger" href="{% url 'book-delete-view' object.id %}" role="button">Usuń książkę</a>
-    {% endif %}
 {% endblock %}
