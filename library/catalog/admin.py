@@ -1,12 +1,15 @@
+"""customization of an admin panel for a project"""
 from django.contrib import admin
 from django.contrib.admin import ModelAdmin
 
 from .models import Book
 
-# Register your models here.
+
+# pylint: disable=unused-argument
 
 
 class BookAdmin(ModelAdmin):
+    """class defining the looks of an admin panel"""
 
     fieldsets = [
         ('Książki:', {'fields': ['title', 'issue_date']}),
@@ -32,10 +35,12 @@ class BookAdmin(ModelAdmin):
 
     @staticmethod
     def issue_year(obj):
+        """method converting full date to a year"""
         return obj.issue_date.year
 
     @staticmethod
     def change_genre_to_something(modeladmin, request, queryset):
+        """method that allow a generic way to change genre to something"""
         queryset.update(genre='Something')
 
     ordering = ['id']

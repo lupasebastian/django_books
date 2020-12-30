@@ -1,10 +1,13 @@
-from django.db.models import Model, CharField, IntegerField, ForeignKey, DO_NOTHING, DateField, TextField
+"""models for a catalog app"""
+from django.db.models import Model, CharField, IntegerField, ForeignKey, \
+    DO_NOTHING, DateField, TextField
 
 
-# Create your models here.
+# pylint: disable=invalid-str-returned
 
 
 class Author(Model):
+    """class defining Author objects"""
     name = CharField(max_length=128, verbose_name='Imię i nazwisko', unique=True)
 
     def __str__(self):
@@ -12,6 +15,7 @@ class Author(Model):
 
 
 class Book(Model):
+    """class defining Book objects"""
     title = CharField(max_length=128, verbose_name='Tytuł')
     genre = CharField(max_length=128, verbose_name='Gatunek')
     rating = IntegerField(verbose_name='Ocena')
